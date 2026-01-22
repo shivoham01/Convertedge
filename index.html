@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConvertEdge | High-Performance Landing Page Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fadeIn': 'fadeIn 0.3s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeIn: {
+                            'from': { opacity: '0', transform: 'scale(0.95)' },
+                            'to': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typing Indicator */
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-300 bg-dark-900 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-dark-900/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer"
+                    onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-brand-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-rocket text-white text-lg"></i>
+                    </div>
+                    <span class="font-bold text-2xl text-white tracking-tight">Convert<span
+                            class="text-brand-500">Edge</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features"
+                        class="text-slate-300 hover:text-white transition-colors font-medium">Features</a>
+                    <a href="#portfolio" class="text-slate-300 hover:text-white transition-colors font-medium">Work</a>
+                    <a href="#ai-tool"
+                        class="text-brand-400 hover:text-brand-300 transition-colors font-medium flex items-center">
+                        <i class="fas fa-bolt mr-1"></i> Growth Tools
+                    </a>
+                    <a href="#pricing" class="text-slate-300 hover:text-white transition-colors font-medium">Pricing</a>
+                    <a href="#process" class="text-slate-300 hover:text-white transition-colors font-medium">Process</a>
+                    <a href="#contact"
+                        class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-full transition-all transform hover:scale-105 shadow-lg shadow-brand-500/30">
+                        Start Project
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 border-t border-slate-700 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#features"
+                    class="block px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Features</a>
+                <a href="#portfolio"
+                    class="block px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Work</a>
+                <a href="#ai-tool"
+                    class="block px-3 py-3 text-base font-medium text-brand-400 hover:text-brand-300 hover:bg-slate-700 rounded-md"><i
+                        class="fas fa-bolt mr-2"></i> Growth Tools</a>
+                <a href="#pricing"
+                    class="block px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Pricing</a>
+                <a href="#process"
+                    class="block px-3 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Process</a>
+                <a href="#contact"
+                    class="block mt-4 text-center px-3 py-3 text-base font-bold bg-brand-600 text-white rounded-md">Start
+                    Project</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-dark-900">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl animate-pulse"
+                style="animation-delay: 2s;"></div>
+            <div class="absolute inset-0 bg-dark-900 opacity-20"
+                style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E')">
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div
+                class="inline-block px-4 py-1.5 mb-6 mt-6 border border-brand-500/30 rounded-full bg-brand-500/10 backdrop-blur-sm reveal">
+                <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Conversion Focused
+                    Design</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-8 reveal delay-100">
+                Turn Visitors into <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">loyal
+                    customers.</span>
+            </h1>
+
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10 reveal" style="transition-delay: 200ms;">
+                Stop sending paid traffic to leak-prone pages. We engineer high-velocity landing pages designed to slash
+                your acquisition costs and maximize every ad dollar.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 reveal" style="transition-delay: 300ms;">
+                <a href="#contact"
+                    class="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-brand-500/40 flex items-center justify-center">
+                    Get Your Free Audit
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#portfolio"
+                    class="px-8 py-4 bg-dark-800 hover:bg-slate-700 text-white border border-slate-700 font-bold rounded-lg transition-all flex items-center justify-center">
+                    View Our Work
+                </a>
+            </div>
+
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-800 pt-8 reveal"
+                style="transition-delay: 400ms;">
+                <div>
+                    <div class="text-3xl font-bold text-white">200+</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wide">Pages Launched</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">4.5%</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wide">Avg. Conversion Increase</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">99%</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wide">Client Satisfaction</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">3 Days</div>
+                    <div class="text-sm text-slate-500 uppercase tracking-wide">Avg. Turnaround</div>
+                </div>
+            </div>
+
+            <div class="mt-16 relative mx-auto max-w-5xl reveal" style="transition-delay: 500ms;">
+                <div
+                    class="relative rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-dark-800 animate-float">
+                    <div class="h-8 bg-slate-800 flex items-center space-x-2 px-4 border-b border-slate-700">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2426&q=80"
+                        alt="Landing Page Mockup"
+                        class="w-full opacity-80 hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="py-24 bg-dark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-white mb-4">Why most landing pages fail</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Don't let bad design drain your ad budget. We fix the common
+                    pitfalls that kill conversions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-dark-900 p-8 rounded-2xl border border-slate-700 hover:border-red-500/50 transition-colors reveal">
+                    <div class="w-14 h-14 bg-red-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Slow Load Times</h3>
+                    <p class="text-slate-400">53% of visits are abandoned if a mobile site takes longer than 3 seconds
+                        to load. We build for speed.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-dark-900 p-8 rounded-2xl border border-slate-700 hover:border-red-500/50 transition-colors reveal"
+                    style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-red-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mouse-pointer text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Poor Mobile UX</h3>
+                    <p class="text-slate-400">If your page looks broken on a phone, you're losing half your traffic. Our
+                        designs are mobile-first.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-dark-900 p-8 rounded-2xl border border-slate-700 hover:border-red-500/50 transition-colors reveal"
+                    style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-red-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-frown text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Confusing CTAs</h3>
+                    <p class="text-slate-400">If users don't know what to do next, they leave. We design clear,
+                        compelling conversion paths.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-500 font-semibold uppercase tracking-wider">The Solution</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Built for Growth</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Features List -->
+                <div
+                    class="p-6 rounded-2xl bg-dark-800 border border-slate-700 hover:border-brand-500/50 transition-all hover:-translate-y-1 reveal">
+                    <i class="fas fa-pen-nib text-brand-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Persuasive Copywriting</h3>
+                    <p class="text-slate-400">Headlines that hook and body copy that sells. We focus on the psychology
+                        of your customer.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-dark-800 border border-slate-700 hover:border-brand-500/50 transition-all hover:-translate-y-1 reveal"
+                    style="transition-delay: 100ms;">
+                    <i class="fas fa-paint-brush text-brand-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Custom Design</h3>
+                    <p class="text-slate-400">No cookie-cutter templates. We design unique layouts that match your brand
+                        identity.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-dark-800 border border-slate-700 hover:border-brand-500/50 transition-all hover:-translate-y-1 reveal"
+                    style="transition-delay: 200ms;">
+                    <i class="fas fa-code text-brand-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Clean Code</h3>
+                    <p class="text-slate-400">Semantic HTML, Tailwind CSS, and optimized JS ensures your page scores 95+
+                        on Google Pagespeed.</p>
+                </div>
+                <div
+                    class="p-6 rounded-2xl bg-dark-800 border border-slate-700 hover:border-brand-500/50 transition-all hover:-translate-y-1 reveal">
+                    <i class="fas fa-chart-bar text-brand-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Analytics Setup</h3>
+                    <p class="text-slate-400">We integrate Google Analytics, Meta Pixel, and heatmaps so you can track
+                        every click.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-dark-800 border border-slate-700 hover:border-brand-500/50 transition-all hover:-translate-y-1 reveal"
+                    style="transition-delay: 100ms;">
+                    <i class="fas fa-flask text-brand-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">A/B Testing Ready</h3>
+                    <p class="text-slate-400">We build pages structured to easily swap headlines and images for split
+                        testing tools.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-dark-800 border border-slate-700 hover:border-brand-500/50 transition-all hover:-translate-y-1 reveal"
+                    style="transition-delay: 200ms;">
+                    <i class="fas fa-plug text-brand-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">CRM Integration</h3>
+                    <p class="text-slate-400">Leads go straight to your Mailchimp, HubSpot, or Zapier workflow
+                        automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 bg-dark-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <span class="text-brand-500 font-semibold uppercase tracking-wider">Our Work</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Recent Projects</h2>
+                </div>
+                <a href="#"
+                    class="hidden md:inline-flex items-center text-brand-400 hover:text-brand-300 font-semibold mt-4 md:mt-0">
+                    View Dribbble Profile <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Projects -->
+                <div class="group relative rounded-xl overflow-hidden cursor-pointer reveal">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxJw7ldE5aK9jxeV01Na9PeBsQFYWVihde2tjd7HomwY5AMXnU3eBRD7bYrO3GAqQJo9JfshPLzrU_n1roLw-gb9BPaYNg6aUWoBCfh4reV5GQ7VcYmmfeHh4sD2IvI-calgIF7CKpvEmg-2fqMMLFKwgr4UXP3BM1SGvxl7m6He7hSLx4ruPWiNqg9bo/s320/Screenshot%202026-01-22%20203833.png"
+                        alt="liver detox page"
+                        class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-dark-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Liver Care</h3>
+                        <p class="text-slate-300 mb-4">Lead generation page for a digital product business.</p>
+                        <a href="https://detox-fatty-liver.onrender.com/" target="_blank">
+                            <button class="bg-gray-300 text-black p-2 rounded font-semibold">View Case Study</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="group relative rounded-xl overflow-hidden cursor-pointer reveal"
+                    style="transition-delay: 100ms;">
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Health App"
+                        class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-dark-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Health App</h3>
+                        <p class="text-slate-300 mb-4">App download landing page with 12% conversion.</p>
+                        <a href="https://detox-fatty-liver.onrender.com/" target="_blank">
+                            <button class="bg-gray-300 text-black p-2 rounded font-semibold">View Case Study</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="group relative rounded-xl overflow-hidden cursor-pointer reveal"
+                    style="transition-delay: 200ms;">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPMd6IoZlGNR0aH8_3XlZteU_HDTYoKAt4ovQobnEVxTzFJZY_v4i7aOsjiy8cqJIeJye48lxAuNeH91goTtYzn8btBxagT9fKLlazyTkVjRVjH-wxpkYoILg0PbKwidg7dl56-V4GcfP6yjn3WeYbIX-9a3txwyGHtDhqhTNmQ60mcch5089u_an6zUw/s320/Screenshot%202026-01-22%20204640.png"
+                        alt="Organic Coffee"
+                        class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-dark-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Royal Saloon</h3>
+                        <p class="text-slate-300 mb-4">Booking page for a saloon business.</p>
+                        <a href="https://royalsaloon.onrender.com/" target="_blank">
+                            <button class="bg-gray-300 text-black p-2 rounded font-semibold">View Case Study</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 md:hidden">
+                <a href="#" class="text-brand-400 font-semibold">View All Projects &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tool Section -->
+    <section id="ai-tool" class="py-24 bg-dark-900 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-brand-600/5 blur-[120px] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-10 reveal">
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 text-sm font-semibold border border-brand-500/20 mb-4">
+                    <i class="fas fa-bolt mr-2"></i> Powered by Gemini
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Free Growth Toolkit</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    Generate every part of your marketing funnel instantly. Select a tool below to get started.
+                </p>
+            </div>
+
+            <div class="bg-dark-800 rounded-2xl border border-slate-700 p-6 md:p-8 shadow-2xl reveal">
+                <!-- Tool Selector Tabs -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <button
+                        class="ai-tab active px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-brand-600 text-white shadow-lg shadow-brand-500/25 ring-offset-2 ring-offset-dark-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        data-mode="headline" data-placeholder="e.g., An organic dog food subscription service..."
+                        data-btn="Generate Headlines ✨">
+                        <i class="fas fa-heading mr-2"></i> Headlines
+                    </button>
+                    <button
+                        class="ai-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-dark-900 text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 focus:outline-none focus:border-brand-500"
+                        data-mode="cta" data-placeholder="e.g., A 7-day free trial for a project management tool..."
+                        data-btn="Generate Buttons ✨">
+                        <i class="fas fa-mouse-pointer mr-2"></i> Buttons
+                    </button>
+                    <button
+                        class="ai-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-dark-900 text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 focus:outline-none focus:border-brand-500"
+                        data-mode="valueprop" data-placeholder="e.g., A cybersecurity platform for small businesses..."
+                        data-btn="Generate Value Props ✨">
+                        <i class="fas fa-gem mr-2"></i> Value Props
+                    </button>
+                    <button
+                        class="ai-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-dark-900 text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 focus:outline-none focus:border-brand-500"
+                        data-mode="painpoint" data-placeholder="e.g., A meal prep service for busy parents..."
+                        data-btn="Identify Pain Points ✨">
+                        <i class="fas fa-frown mr-2"></i> Pain Points
+                    </button>
+                    <button
+                        class="ai-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-dark-900 text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 focus:outline-none focus:border-brand-500"
+                        data-mode="email" data-placeholder="e.g., A software that automates accounting..."
+                        data-btn="Write Email Opener ✨">
+                        <i class="fas fa-envelope mr-2"></i> Email Opener
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label for="ai-input" class="block text-slate-300 text-sm font-bold mb-2">Describe your product
+                            or service</label>
+                        <textarea id="ai-input" rows="3"
+                            class="w-full bg-dark-900 text-white border border-slate-700 rounded-lg py-3 px-4 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors placeholder-slate-600"
+                            placeholder="e.g., An organic dog food subscription service..."></textarea>
+                    </div>
+
+                    <button id="ai-generate-btn"
+                        class="w-full py-4 bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-brand-500/20 flex items-center justify-center group">
+                        <i class="fas fa-bolt mr-2 group-hover:rotate-12 transition-transform"></i> <span
+                            id="btn-text">Generate Copy ✨</span>
+                    </button>
+
+                    <!-- Results Area -->
+                    <div id="ai-results" class="hidden space-y-4 pt-4 border-t border-slate-700/50">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-white font-semibold text-sm uppercase tracking-wider">Generated Results</h3>
+                            <span class="text-xs text-brand-400 font-mono" id="result-type-label">HEADLINES</span>
+                        </div>
+                        <div id="ai-output-container" class="space-y-3">
+                            <!-- Dynamic Content -->
+                        </div>
+                    </div>
+
+                    <div id="ai-error"
+                        class="hidden p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-white">How We Work</h2>
+            </div>
+
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-800 -translate-y-1/2 z-0">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                    <div class="bg-dark-900 p-6 text-center reveal">
+                        <div
+                            class="w-16 h-16 mx-auto bg-dark-800 border border-brand-500 text-brand-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-brand-500/20 z-20 relative">
+                            1</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Strategy</h3>
+                        <p class="text-sm text-slate-400">We analyze your audience and define the offer.</p>
+                    </div>
+                    <div class="bg-dark-900 p-6 text-center reveal" style="transition-delay: 150ms;">
+                        <div
+                            class="w-16 h-16 mx-auto bg-dark-800 border border-brand-500 text-brand-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-brand-500/20 z-20 relative">
+                            2</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Design</h3>
+                        <p class="text-sm text-slate-400">Wireframing and high-fidelity UI design in Figma.</p>
+                    </div>
+                    <div class="bg-dark-900 p-6 text-center reveal" style="transition-delay: 300ms;">
+                        <div
+                            class="w-16 h-16 mx-auto bg-dark-800 border border-brand-500 text-brand-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-brand-500/20 z-20 relative">
+                            3</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Development</h3>
+                        <p class="text-sm text-slate-400">Coding the page and connecting integrations.</p>
+                    </div>
+                    <div class="bg-dark-900 p-6 text-center reveal" style="transition-delay: 450ms;">
+                        <div
+                            class="w-16 h-16 mx-auto bg-dark-800 border border-brand-500 text-brand-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-brand-500/20 z-20 relative">
+                            4</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Launch</h3>
+                        <p class="text-sm text-slate-400">QA testing, live deployment, and post-launch support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-dark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-500 font-semibold uppercase tracking-wider">Pricing</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-slate-400">One-time fees. No hidden monthly subscriptions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter -->
+                <div
+                    class="bg-dark-900 rounded-2xl p-8 border border-slate-700 hover:border-slate-600 transition-all reveal">
+                    <h3 class="text-xl font-bold text-white">Starter</h3>
+                    <p class="text-slate-400 text-sm mt-2">For simple lead capture.</p>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-white">₹499</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Basic Design
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Mobile Responsive
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Contact Form
+                            Integration</li>
+                        <li class="flex items-center opacity-50"><i class="fas fa-times text-slate-600 mr-3"></i>
+                            Copywriting</li>
+                    </ul>
+                    <a href="#contact"
+                        class="block w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-white font-bold text-center rounded-lg transition-colors">Select
+                        Plan</a>
+                </div>
+
+                <!-- Pro -->
+                <div class="bg-dark-900 rounded-2xl p-8 border-2 border-brand-500 relative transform md:-translate-y-4 shadow-2xl shadow-brand-500/20 reveal"
+                    style="transition-delay: 100ms;">
+                    <div
+                        class="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                        MOST POPULAR</div>
+                    <h3 class="text-xl font-bold text-white">Pro Conversion</h3>
+                    <p class="text-slate-400 text-sm mt-2">Complete package for ads.</p>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-white">₹999</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>
+                            <strong>Everything in Starter</strong>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Professional
+                            Copywriting</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Analytics Setup
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> A/B Testing Setup
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="block w-full py-3 px-4 bg-brand-600 hover:bg-brand-700 text-white font-bold text-center rounded-lg transition-colors shadow-lg shadow-brand-500/40">Select
+                        Plan</a>
+                </div>
+
+                <!-- Custom -->
+                <div class="bg-dark-900 rounded-2xl p-8 border border-slate-700 hover:border-slate-600 transition-all reveal"
+                    style="transition-delay: 200ms;">
+                    <h3 class="text-xl font-bold text-white">Agency / Scale</h3>
+                    <p class="text-slate-400 text-sm mt-2">For multi-page needs.</p>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-white">Custom</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Multiple Landing
+                            Pages</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Design System
+                            Creation</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Advanced
+                            Animations</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> CMS Integration
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="block w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-white font-bold text-center rounded-lg transition-colors">Contact
+                        Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-dark-900">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-12 reveal">Frequently Asked Questions</h2>
+
+            <div class="space-y-4">
+                <div class="bg-dark-800 rounded-lg overflow-hidden reveal">
+                    <button
+                        class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-white">How long does it take to build a page?</span>
+                        <i class="fas fa-chevron-down text-brand-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 pb-4 text-slate-400">
+                            Typically, our turnaround time is 3-5 business days from the moment we receive your assets
+                            and brief. For the Pro package with copywriting, allow up to 7 days.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-dark-800 rounded-lg overflow-hidden reveal">
+                    <button
+                        class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-white">Do I own the code?</span>
+                        <i class="fas fa-chevron-down text-brand-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 pb-4 text-slate-400">
+                            Yes, 100%. Once the project is paid for, you own all rights to the design, copy, and code.
+                            We can hand over raw HTML/CSS files or upload it to your hosting.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-dark-800 rounded-lg overflow-hidden reveal">
+                    <button
+                        class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-white">What platforms do you work with?</span>
+                        <i class="fas fa-chevron-down text-brand-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 pb-4 text-slate-400">
+                            We specialize in custom HTML/Tailwind for maximum speed, but we can also build on WordPress
+                            (Elementor), Webflow, Unbounce, or Shopify.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-br from-brand-900 to-dark-900 relative">
+        <div class="absolute inset-0 bg-dark-900 opacity-10"
+            style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E')">
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-dark-800 rounded-2xl p-8 md:p-12 shadow-2xl border border-slate-700 reveal">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-4">Ready to skyrocket your conversions?</h2>
+                    <p class="text-slate-400">Fill out the form below to get your free strategy audit and quote.</p>
+                </div>
+
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-slate-400 text-sm font-bold mb-2" for="name">Name</label>
+                            <input
+                                class="w-full bg-dark-900 text-white border border-slate-700 rounded-lg py-3 px-4 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors"
+                                id="name" type="text" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 text-sm font-bold mb-2" for="email">Email</label>
+                            <input
+                                class="w-full bg-dark-900 text-white border border-slate-700 rounded-lg py-3 px-4 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors"
+                                id="email" type="email" placeholder="john@company.com" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-sm font-bold mb-2" for="website">Current Website
+                            (Optional)</label>
+                        <input
+                            class="w-full bg-dark-900 text-white border border-slate-700 rounded-lg py-3 px-4 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors"
+                            id="website" type="text" placeholder="https://">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-sm font-bold mb-2" for="message">Project Details</label>
+                        <textarea
+                            class="w-full bg-dark-900 text-white border border-slate-700 rounded-lg py-3 px-4 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors h-32"
+                            id="message" placeholder="Tell us about your product and goals..." required></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-brand-500/30">
+                        Get My Free Quote
+                    </button>
+
+                    <div class="relative flex py-2 items-center">
+                        <div class="flex-grow border-t border-slate-700"></div>
+                        <span class="flex-shrink-0 mx-4 text-slate-500 text-sm">Or</span>
+                        <div class="flex-grow border-t border-slate-700"></div>
+                    </div>
+
+                    <button type="button" id="directWhatsAppBtn"
+                        class="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-green-500/30 flex items-center justify-center">
+                        <i class="fab fa-whatsapp text-2xl mr-2"></i> Chat on WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-rocket text-brand-500 text-xl mr-2"></i>
+                        <span class="font-bold text-xl text-white">ConvertEdge</span>
+                    </div>
+                    <p class="text-slate-500 text-sm">
+                        Building the internet's highest converting landing pages, one pixel at a time.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">SaaS Landing Pages</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">E-commerce Funnels</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">Lead Magnet Pages</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">App Showcases</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-white transition-all">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-white transition-all">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-600 hover:text-white transition-all">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-600 text-sm text-center md:text-left">&copy; 2025 ConvertEdge Development. All
+                    rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 text-sm text-slate-600">
+                    <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-400">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal"
+        class="fixed inset-0 z-[60] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="modalOverlay"></div>
+        <div class="bg-dark-800 border border-slate-700 rounded-2xl p-8 max-w-sm mx-4 relative transform scale-95 transition-transform duration-300"
+            id="modalContent">
+            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-500 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white text-center mb-2">Message Sent!</h3>
+            <p class="text-slate-400 text-center mb-6">Thanks for reaching out. We'll analyze your request and get back
+                to you within 24 hours.</p>
+            <button id="closeModal"
+                class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg transition-colors">
+                Awesome
+            </button>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div id="ai-chatbot-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="ai-chat-window"
+            class="hidden mb-4 w-80 md:w-96 bg-dark-800 border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all origin-bottom-right animate-fadeIn">
+            <div class="bg-gradient-to-r from-brand-700 to-purple-800 p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-rocket text-white text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm">EdgeBot</h4>
+                        <p class="text-white/70 text-xs">AI Strategist</p>
+                    </div>
+                </div>
+                <button id="close-chat" class="text-white/70 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 bg-dark-900">
+                <div class="flex justify-start">
+                    <div
+                        class="bg-dark-800 text-slate-300 rounded-2xl rounded-tl-none py-3 px-4 text-sm border border-slate-700 max-w-[85%]">
+                        Hi! I'm EdgeBot. Ask me anything about landing page design, conversion optimization, or our
+                        services! 🚀
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 bg-dark-800 border-t border-slate-700">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input"
+                        class="flex-1 bg-dark-900 text-white text-sm border border-slate-700 rounded-full py-2 px-4 focus:outline-none focus:border-brand-500"
+                        placeholder="Type your question..." autocomplete="off">
+                    <button type="submit"
+                        class="w-10 h-10 bg-brand-600 hover:bg-brand-700 text-white rounded-full flex items-center justify-center transition-colors">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <button id="chat-toggle-btn"
+            class="w-14 h-14 bg-gradient-to-br from-brand-500 to-purple-600 hover:from-brand-400 hover:to-purple-500 rounded-full flex items-center justify-center shadow-lg shadow-brand-500/30 transition-transform hover:scale-105 animate-bounce">
+            <i class="fas fa-comment-dots text-white text-2xl"></i>
+        </button>
+    </div>
+2
+    <script>
+        // --- Shared Gemini API Helper ---
+        const apiKey = process.env.API; // API Key provided by environment
+
+        async function callGeminiAPI(userInput, systemPrompt) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `User Query/Input: ${userInput}` }]
+                        }],
+                        systemInstruction: {
+                            parts: [{ text: systemPrompt }]
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                throw error;
+            }
+        }
+
+        // --- Navigation ---
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg', 'bg-dark-900/95');
+                navbar.classList.remove('bg-dark-900/90');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-dark-900/95');
+                navbar.classList.add('bg-dark-900/90');
+            }
+        });
+
+        // --- Animations ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- FAQ ---
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                const isOpen = content.style.height && content.style.height !== '0px';
+
+                document.querySelectorAll('.faq-content').forEach(c => c.style.height = '0px');
+                document.querySelectorAll('.faq-btn i').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                if (!isOpen) {
+                    content.style.height = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // --- Contact Form ---
+        const contactForm = document.getElementById('contactForm');
+        const successModal = document.getElementById('successModal');
+        const modalContent = document.getElementById('modalContent');
+        const directWhatsAppBtn = document.getElementById('directWhatsAppBtn');
+
+        // Helper to open WhatsApp
+        function openWhatsApp(text) {
+            // Replace with your actual phone number (include country code, no + or spaces)
+            const phoneNumber = "+917307709005";
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+
+            // Get input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const website = document.getElementById('website').value;
+            const message = document.getElementById('message').value;
+
+            btn.innerText = 'Redirecting...';
+            btn.disabled = true;
+
+            // Construct formatted message
+            const whatsappMessage = `*New Project Inquiry* 🚀\n\n*Name:* ${name}\n*Email:* ${email}\n*Website:* ${website}\n*Details:* ${message}`;
+
+            setTimeout(() => {
+                openWhatsApp(whatsappMessage);
+
+                successModal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+
+                // Update modal text slightly to reflect the action
+                modalContent.querySelector('h3').innerText = "Opened WhatsApp!";
+                modalContent.querySelector('p').innerText = "We've opened a chat with your details filled in. Hit send to connect!";
+
+                contactForm.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 1000);
+        });
+
+        directWhatsAppBtn.addEventListener('click', () => {
+            openWhatsApp("Hi! I'm interested in your landing page services. Can we have a quick chat?");
+        });
+
+        function closeModal() {
+            successModal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+        }
+
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+        document.getElementById('modalOverlay').addEventListener('click', closeModal);
+
+        // --- AI Growth Tools ---
+        const aiTabs = document.querySelectorAll('.ai-tab');
+        const aiInput = document.getElementById('ai-input');
+        const aiGenerateBtn = document.getElementById('ai-generate-btn');
+        const aiResults = document.getElementById('ai-results');
+        const aiOutputContainer = document.getElementById('ai-output-container');
+        const aiError = document.getElementById('ai-error');
+        const btnText = document.getElementById('btn-text');
+        const resultTypeLabel = document.getElementById('result-type-label');
+        let currentMode = 'headline';
+
+        aiTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                aiTabs.forEach(t => {
+                    t.classList.remove('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-500/25', 'ring-offset-2', 'ring-offset-dark-800', 'focus:ring-2', 'focus:ring-brand-500');
+                    t.classList.add('bg-dark-900', 'text-slate-400', 'border', 'border-slate-700');
+                });
+                tab.classList.remove('bg-dark-900', 'text-slate-400', 'border', 'border-slate-700');
+                tab.classList.add('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-500/25', 'ring-offset-2', 'ring-offset-dark-800', 'focus:ring-2', 'focus:ring-brand-500');
+
+                currentMode = tab.dataset.mode;
+                aiInput.placeholder = tab.dataset.placeholder;
+                btnText.innerText = tab.dataset.btn;
+                aiResults.classList.add('hidden');
+                aiError.classList.add('hidden');
+            });
+        });
+
+        aiGenerateBtn.addEventListener('click', async () => {
+            const userInput = aiInput.value.trim();
+            if (!userInput) return;
+
+            const originalBtnHtml = aiGenerateBtn.innerHTML;
+            aiGenerateBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Writing Magic...';
+            aiGenerateBtn.disabled = true;
+            aiResults.classList.add('hidden');
+            aiError.classList.add('hidden');
+
+            let systemPrompt = "";
+            switch (currentMode) {
+                case 'headline': systemPrompt = "You are a world-class conversion copywriter. Write 3 short, punchy, high-converting hero headlines (under 10 words) for a landing page based on the user's product. Return ONLY the 3 headlines as a plain text list separated by newlines."; break;
+                case 'cta': systemPrompt = "You are a UX writer. Generate 5 action-oriented, high-converting Call-to-Action (CTA) button texts (2-4 words max) for the user's product. Examples: 'Start Free Trial', 'Get Instant Access'. Return ONLY the text list separated by newlines."; break;
+                case 'valueprop': systemPrompt = "You are a brand strategist. Write 3 clear, benefit-driven value proposition statements (1-2 sentences each) for the user's product. Focus on the outcome for the user. Return ONLY the 3 statements as a plain text list separated by newlines."; break;
+                case 'painpoint': systemPrompt = "You are a customer research expert. List 3 specific, emotional customer pain points or frustrations that this product solves. These will be used in the 'Problem' section of a landing page. Return ONLY the 3 pain points as a plain text list separated by newlines."; break;
+                case 'email': systemPrompt = "You are an email marketing expert. Write a single, engaging subject line and a short 2-sentence opening hook for a cold outreach email about this product. Format: 'Subject: [Subject]\n\n[Body]'. Return only this."; break;
+            }
+
+            try {
+                const text = await callGeminiAPI(userInput, systemPrompt);
+                const lines = text.split('\n').filter(line => line.trim() !== '');
+
+                aiOutputContainer.innerHTML = '';
+                resultTypeLabel.innerText = currentMode.toUpperCase();
+
+                if (currentMode === 'email') {
+                    const div = document.createElement('div');
+                    div.className = 'p-4 bg-dark-900 border border-slate-700 rounded-lg group/item hover:border-brand-500 transition-colors relative';
+                    div.innerHTML = `
+                        <div class="whitespace-pre-wrap text-slate-300 font-mono text-sm">${text}</div>
+                        <button class="absolute top-4 right-4 text-slate-500 hover:text-brand-500 transition-colors opacity-0 group-hover/item:opacity-100" onclick="navigator.clipboard.writeText(\`${text.replace(/`/g, "\\`")}\`)">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    `;
+                    aiOutputContainer.appendChild(div);
+                } else {
+                    lines.forEach(line => {
+                        const cleanText = line.replace(/^\d+\.\s*/, '').replace(/^-\s*/, '').replace(/"/g, '').trim();
+                        if (!cleanText || cleanText.startsWith("Subject:")) return;
+
+                        const div = document.createElement('div');
+                        div.className = 'p-4 bg-dark-900 border border-slate-700 rounded-lg flex justify-between items-center group/item hover:border-brand-500 transition-colors';
+
+                        if (currentMode === 'cta') {
+                            div.innerHTML = `
+                                <div class="px-6 py-2 bg-brand-600 text-white font-bold rounded-lg shadow-lg shadow-brand-500/20 text-sm whitespace-nowrap">${cleanText}</div>
+                                <button class="text-slate-500 hover:text-brand-500 transition-colors opacity-0 group-hover/item:opacity-100 ml-4" onclick="navigator.clipboard.writeText('${cleanText.replace(/'/g, "\\'")}')"><i class="fas fa-copy"></i></button>
+                            `;
+                        } else {
+                            div.innerHTML = `
+                                <p class="text-white font-medium italic">"${cleanText}"</p>
+                                <button class="text-slate-500 hover:text-brand-500 transition-colors opacity-0 group-hover/item:opacity-100 ml-4 flex-shrink-0" onclick="navigator.clipboard.writeText('${cleanText.replace(/'/g, "\\'")}')"><i class="fas fa-copy"></i></button>
+                            `;
+                        }
+                        aiOutputContainer.appendChild(div);
+                    });
+                }
+                aiResults.classList.remove('hidden');
+            } catch (err) {
+                aiError.innerText = "Oops! The creative juices aren't flowing right now. Please try again later.";
+                aiError.classList.remove('hidden');
+            } finally {
+                aiGenerateBtn.innerHTML = originalBtnHtml;
+                aiGenerateBtn.disabled = false;
+            }
+        });
+
+        // --- Chatbot ---
+        const chatToggleBtn = document.getElementById('chat-toggle-btn');
+        const chatWindow = document.getElementById('ai-chat-window');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        function toggleChat() {
+            chatWindow.classList.toggle('hidden');
+            if (!chatWindow.classList.contains('hidden')) {
+                chatToggleBtn.classList.remove('animate-bounce');
+                chatInput.focus();
+            }
+        }
+
+        chatToggleBtn.addEventListener('click', toggleChat);
+        closeChatBtn.addEventListener('click', toggleChat);
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userMsg = chatInput.value.trim();
+            if (!userMsg) return;
+
+            // Add User Message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'flex justify-end';
+            userDiv.innerHTML = `<div class="bg-brand-600 text-white rounded-2xl rounded-tr-none py-3 px-4 text-sm max-w-[85%]">${userMsg}</div>`;
+            chatMessages.appendChild(userDiv);
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Typing Indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex justify-start';
+            typingDiv.innerHTML = `
+                <div class="bg-dark-800 rounded-2xl rounded-tl-none py-4 px-4 border border-slate-700 flex space-x-1">
+                    <div class="w-2 h-2 bg-slate-500 rounded-full typing-dot"></div>
+                    <div class="w-2 h-2 bg-slate-500 rounded-full typing-dot"></div>
+                    <div class="w-2 h-2 bg-slate-500 rounded-full typing-dot"></div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const systemPrompt = "You are 'EdgeBot', a friendly, expert consultant for ConvertEdge Landing Page Agency. You answer questions about landing page design, conversion rate optimization (CRO), A/B testing, and copywriting. Keep answers concise (under 3 sentences), professional, and helpful. If asked about pricing, refer them to the Pricing section. If asked who you are, say you are an AI powered by Gemini.";
+
+            try {
+                const response = await callGeminiAPI(userMsg, systemPrompt);
+                typingDiv.remove();
+
+                const botDiv = document.createElement('div');
+                botDiv.className = 'flex justify-start';
+                botDiv.innerHTML = `<div class="bg-dark-800 text-slate-300 rounded-2xl rounded-tl-none py-3 px-4 text-sm border border-slate-700 max-w-[85%]">${response}</div>`;
+                chatMessages.appendChild(botDiv);
+            } catch (error) {
+                typingDiv.remove();
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'flex justify-start';
+                errorDiv.innerHTML = `<div class="bg-dark-800 text-slate-300 rounded-2xl rounded-tl-none py-3 px-4 text-sm border border-slate-700 max-w-[85%]">I'm having trouble connecting to my creative brain right now. Please try again.</div>`;
+                chatMessages.appendChild(errorDiv);
+            }
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+    </script>
+</body>
+
+</html>
