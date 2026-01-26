@@ -138,7 +138,7 @@
                     </a>
                     <a href="#pricing" class="text-slate-300 hover:text-white transition-colors font-medium">Pricing</a>
                     <a href="#process" class="text-slate-300 hover:text-white transition-colors font-medium">Process</a>
-                    <a href="https://wa.me/917307709005"
+                    <a id="directWhatsAppBtn" href="https://wa.me/917307709005"
                         class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full transition-all transform hover:scale-105 shadow-lg shadow-brand-500/30">
                         Chat Now
                     </a>
@@ -935,9 +935,6 @@
         });
 
         // --- Contact Form ---
-        const contactForm = document.getElementById('contactForm');
-        const successModal = document.getElementById('successModal');
-        const modalContent = document.getElementById('modalContent');
         const directWhatsAppBtn = document.getElementById('directWhatsAppBtn');
 
         // Helper to open WhatsApp
@@ -948,39 +945,6 @@
             window.open(url, '_blank');
         }
 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-
-            // Get input values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const website = document.getElementById('website').value;
-            const message = document.getElementById('message').value;
-
-            btn.innerText = 'Redirecting...';
-            btn.disabled = true;
-
-            // Construct formatted message
-            const whatsappMessage = `*New Project Inquiry* 🚀\n\n*Name:* ${name}\n*Email:* ${email}\n*Website:* ${website}\n*Details:* ${message}`;
-
-            setTimeout(() => {
-                (whatsappMessage);
-
-                successModal.classList.remove('opacity-0', 'pointer-events-none');
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
-
-                // Update modal text slightly to reflect the action
-                modalContent.querySelector('h3').innerText = "Opened WhatsApp!";
-                modalContent.querySelector('p').innerText = "We've opened a chat with your details filled in. Hit send to connect!";
-
-                contactForm.reset();
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }, 1000);
-        });
 
         directWhatsAppBtn.addEventListener('click', () => {
             ("Hi! I'm interested in your landing page services. Can we have a quick chat?");
@@ -1160,6 +1124,7 @@
 
 
 </html>
+
 
 
 
